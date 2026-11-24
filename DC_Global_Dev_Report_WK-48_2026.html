@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Data Center Development Weekly Report, Week 48, November 23 - 29, 2026 (to date: Nov 23-24) | azraq.ai</title>
+<style>@font-face { font-family: 'Mangal Pro'; src: local('Mangal Pro'), local('Mangal'), local('MangalPro-Regular'); }</style>
+<style>
+  :root {
+    --az-navy: #002147;
+    --az-navy-mid: #002E63;
+    --az-navy-light: #1E3A5F;
+    --az-blue-accent: #3B82F6;
+    --az-ice: #E8EFF8;
+    --az-bg: #F8FAFC;
+    --az-white: #FFFFFF;
+    --az-text: #1E293B;
+    --az-muted: #64748B;
+    --az-border: #E2E8F0;
+    --az-green: #059669;
+    --az-amber: #D97706;
+    --az-red: #DC2626;
+    --az-teal: #0D9488;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--az-bg); color: var(--az-text); font-family: 'Mangal Pro', system-ui, sans-serif; line-height: 1.7; }
+  @media print { body { padding: 12px; font-size: 11px; } .hero { padding: 24px !important; } table { font-size: 10px; } .no-print { display: none !important; } }
+
+  /* HERO HEADER */
+  .hero {
+    background: linear-gradient(135deg, var(--az-navy) 0%, var(--az-navy-mid) 50%, var(--az-navy-light) 100%);
+    color: var(--az-white);
+    padding: 48px 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+  }
+  .hero-inner { max-width: 1600px; margin: 0 auto; position: relative; z-index: 1; }
+
+
+
+
+  .hero h1 { font-family: 'Mangal Pro', system-ui, sans-serif; font-size: 32px; font-weight: 400; line-height: 1.3; margin-bottom: 8px; }
+  .hero-sub { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 20px; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .badge-dot.live { background: #34D399; animation: pulse 2s infinite; }
+  .badge-dot.count { background: var(--az-blue-accent); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* CONTAINER */
+  .container { max-width: 1600px; margin: 0 auto; padding: 32px; }
+
+  /* STATS ROW */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 36px; }
+  .stat-card {
+    background: var(--az-white);
+    border: 1px solid var(--az-border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    display: block;
+  }
+  .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,33,71,0.12); border-color: var(--az-blue-accent); }
+  .stat-num { font-family: 'Mangal Pro', system-ui, sans-serif; font-size: 28px; color: var(--az-navy); }
+  .stat-label { font-size: 12px; color: var(--az-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+  /* INTRO */
+  .intro {
+    background: linear-gradient(135deg, var(--az-navy) 0%, var(--az-navy-mid) 100%);
+    color: var(--az-white);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .intro strong { color: #93C5FD; }
+
+  /* SECTION */
+  h2 {
+    font-family: 'Mangal Pro', system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--az-navy);
+    margin: 40px 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--az-navy);
+  }
+  h2 .emoji { font-size: 24px; }
+  .section-card {
+    background: var(--az-white);
+    border: 1px solid var(--az-border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .section-card > p { margin-bottom: 16px; color: #334155; font-size: 14px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 8px 0; font-size: 12.5px; }
+  thead th {
+    background: var(--az-navy);
+    color: var(--az-white);
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--az-border);
+    color: #334155;
+    vertical-align: top;
+  }
+
+  tbody td { background: var(--az-white); }
+  tbody tr:hover td { background: #EFF6FF; }
+  .mw { color: var(--az-green); font-weight: 600; }
+  .cost { color: var(--az-amber); font-weight: 600; }
+
+
+
+  .status { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+  .status-active { background: #D1FAE5; color: #065F46; }
+  .status-construction { background: #FEF3C7; color: #92400E; }
+  .status-announced { background: #DBEAFE; color: #1E40AF; }
+  .status-planned { background: #F3E8FF; color: #6B21A8; }
+
+  /* CITATIONS */
+  sup a {
+    color: rgba(0,33,71,0.25);
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 0 1px;
+  }
+  sup a:hover { color: var(--az-navy); text-decoration: underline; }
+  .citations { margin-top: 48px; border-top: 2px solid var(--az-navy); padding-top: 24px; }
+  .citations h2 { color: var(--az-muted); font-size: 16px; border-bottom: none; margin-top: 0; }
+  .citations details { margin-top: 8px; }
+  .citations summary { cursor: pointer; font-size: 14px; font-weight: 600; color: #475569; padding: 10px 0; user-select: none; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .citations summary::-webkit-details-marker { display: none; }
+  .citations summary::before { content: "▶"; font-size: 10px; color: #94A3B8; transition: transform 0.2s; display: inline-block; }
+  .citations details[open] summary::before { transform: rotate(90deg); }
+  .cite-list { font-size: 11.5px; line-height: 2; }
+  .cite-list a { color: var(--az-blue-accent); text-decoration: none; word-break: break-all; }
+  .cite-list a:hover { text-decoration: underline; }
+  .cite-num { color: var(--az-muted); font-weight: 600; min-width: 28px; display: inline-block; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--az-navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    margin-top: 48px;
+  }
+  .footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+  /* FILTER BAR */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .filter-btn {
+    border: 1px solid var(--az-border);
+    background: var(--az-white);
+    color: var(--az-navy);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--az-navy);
+    color: var(--az-white);
+    border-color: var(--az-navy);
+  }
+
+  /* SEARCH */
+  .search-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 16px;
+    border: 1px solid var(--az-border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'Mangal Pro', sans-serif;
+    margin-bottom: 24px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-box:focus { border-color: var(--az-navy); }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 22px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 11px; }
+    thead th, tbody td { padding: 6px; }
+    .container { padding: 16px; }
+  }
+
+  @media print {
+    .section-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+    thead th { background: var(--az-navy) !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    .hero { background: var(--az-navy) !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p style="font-size:12px; text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.5); margin-bottom:8px;">azraq.ai &bull; AI-Powered Risk Management for Digital Infrastructure</p>
+    <h1>Global Data Center Development Weekly Report</h1>
+    <p class="hero-sub">Week 48 Exclusive: 25 Critical &amp; Impactful Developments, Source-Traceable Intelligence. Updated weekly.</p>
+    <div class="hero-badges">
+      <span class="badge"><span class="badge-dot live"></span> Week 48, November 23 - 29, 2026 (to date: Nov 23-24)</span>
+      <span class="badge"><span class="badge-dot count"></span> 25 Developments Tracked</span>
+      <span class="badge">7 Continents &bull; 40 Countries</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- KEY STATS -->
+<div class="stats-row">
+  <a href="https://www.datacenterfrontier.com/hyperscale/article/55323360/blackrock-led-consortium-to-acquire-aligned-data-centers-in-40-billion-ai-infrastructure-deal" target="_blank" rel="noopener" class="stat-card" style="text-decoration:none;color:inherit;"><div class="stat-num">$40B</div><div class="stat-label">Aligned DCs Acquisition</div></a>
+  <a href="https://savingtoinvest.com/why-is-your-electric-bill-going-up-in-2026-what-data-centers-have-to-do-with-it/" target="_blank" rel="noopener" class="stat-card" style="text-decoration:none;color:inherit;"><div class="stat-num">$18.6B</div><div class="stat-label">US Rate Hikes Requested H1</div></a>
+  <a href="https://www.connectingafrica.com/data-centers/vodafone-cassava-elsewedy-electric-unveil-1b-egypt-data-center-project" target="_blank" rel="noopener" class="stat-card" style="text-decoration:none;color:inherit;"><div class="stat-num">$1B</div><div class="stat-label">Africa DCs Egypt Project</div></a>
+  <a href="https://www.datacenterdynamics.com/en/news/khazna-announces-1gw-data-center-expansion-plans/" target="_blank" rel="noopener" class="stat-card" style="text-decoration:none;color:inherit;"><div class="stat-num">1 GW+</div><div class="stat-label">Khazna 5-Yr Expansion</div></a>
+  <a href="https://www.cushmanwakefield.com/en/singapore/insights/apac-data-centre-update" target="_blank" rel="noopener" class="stat-card" style="text-decoration:none;color:inherit;"><div class="stat-num">~1.8 GW</div><div class="stat-label">Japan Now APAC #2</div></a>
+</div>
+
+<!-- EXECUTIVE INTRO -->
+<div class="intro">
+  <p><strong>Week 48</strong> (Nov 23-29, 2026) -- <strong>week-exclusive, PARTIAL edition</strong>: the week is still in progress, so this covers only 25 developments dated <strong>Nov 23-24</strong>. Nothing is carried over from earlier weeks and resolved items are left out. US local resistance led the week. A Virginia judge halted construction of Google's Botetourt County data centre over a FOIA breach. Aurora, CO passed a moratorium and Vantage dropped its Trident site. Augusta's Planning Commission recommended denying the 383-acre Nixon campus, and Shelby County, Piedmont, Salem OR, Madison WI and Yakima County all moved on new rules. Deals: KKR is reportedly in talks for EdgeCore at up to $10bn, and Cogent sold three DCs for $35M. In Europe, SpainDC is preparing a Supreme Court challenge to Spain's 80% hourly-renewables decree, and a 200 MW+ campus is planned in Salaspils, Latvia. In the UK, Drax raised guidance, citing its DC partnership. In Asia, Moonshot AI reportedly cancelled a ~$150M Indonesian contract as US chip licensing bites, CtrlS signed for 150 MW in Bihar, and Samsung is ramping AI SSD NAND. In Africa, CloudVantage launched Nigerian cloud regions. <strong>No new Qatar or GCC DC news was found for Nov 23-24.</strong></p>
+</div>
+
+<!-- SEARCH & FILTER -->
+<div class="no-print">
+  <input type="text" class="search-box" id="searchBox" placeholder="Search by project name, location, developer, or country...">
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterRegion('all', this)">All Regions</button>
+    <button class="filter-btn" onclick="filterRegion('north-america', this)">North America</button>
+    <button class="filter-btn" onclick="filterRegion('europe', this)">Europe</button>
+    <button class="filter-btn" onclick="filterRegion('asia-pacific', this)">Asia-Pacific</button>
+    <button class="filter-btn" onclick="filterRegion('middle-east', this)">Middle East</button>
+    <button class="filter-btn" onclick="filterRegion('africa', this)">Africa</button>
+    <button class="filter-btn" onclick="filterRegion('latam', this)">Latin America</button>
+    <button class="filter-btn" onclick="filterRegion('oceania', this)">Oceania</button>
+  </div>
+</div>
+
+<div class="section-card" data-region="all">
+<p style="margin-bottom:16px;"><strong>Week 48</strong> &mdash; 25 global data center developments sorted by latest news date. Each project name and headline links to its source. Filter by region or search by keyword above.</p>
+
+<div style="overflow-x:auto;">
+<table>
+<thead><tr><th>#</th><th>Project / Development</th><th>Location</th><th>Region</th><th>Capacity</th><th>Land Size</th><th>Developer / Entity</th><th>Status</th><th>Cost</th><th>Date</th><th>News</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong><a href="https://www.cityofmadison.com/news/2026-11-20/proposed-ordinance-to-ban-hyperscale-data-centers" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Madison WI hyperscale DC ban ordinance</a></strong></td><td>Madison, WI, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>City of Madison</td><td><span class="status status-planned">Ordinance introduced</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 24, 2026</td><td style="font-size:11px;"><a href="https://www.cityofmadison.com/news/2026-11-20/proposed-ordinance-to-ban-hyperscale-data-centers" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Ordinance introduced to Common Council restricting new DCs and banning hyperscale campuses</a></td></tr>
+<tr><td>2</td><td><strong><a href="https://writing.strisker.com/data-centers-daily-notes-november-23-2026/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Yakima County six-month moratorium hearing</a></strong></td><td>Yakima County, WA, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Yakima County Commissioners</td><td><span class="status status-planned">Hearing</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 24, 2026</td><td style="font-size:11px;"><a href="https://writing.strisker.com/data-centers-daily-notes-november-23-2026/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Hearing on six-month moratorium on DC permits in unincorporated areas</a></td></tr>
+<tr><td>3</td><td><strong><a href="https://en.sedaily.com/economy/2026/11/24/samsung-to-quintuple-v9-nand-output-at-xian-plant-for-ai" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Samsung Xi&#x27;an V9 NAND ramp for AI SSDs</a></strong></td><td>Xi&#x27;an, China</td><td><span style="display:inline-block;background:#0D9488;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">APAC</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Samsung Electronics</td><td><span class="status status-planned">Capacity expansion</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 24, 2026</td><td style="font-size:11px;"><a href="https://en.sedaily.com/economy/2026/11/24/samsung-to-quintuple-v9-nand-output-at-xian-plant-for-ai" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Samsung to lift V9 NAND output at Xi&#x27;an X2 from ~10,000 to 50,000+ wafers/month for AI DC SSDs</a></td></tr>
+<tr><td>4</td><td><strong><a href="https://www.denvergazette.com/2026/11/23/vantage-drops-aurora-location-for-trident-data-center/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Aurora CO citywide DC moratorium</a></strong></td><td>Aurora, CO, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Aurora City Council</td><td><span class="status status-announced">Passed</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.denvergazette.com/2026/11/23/vantage-drops-aurora-location-for-trident-data-center/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Council unanimously passes temporary DC moratorium after two earlier attempts failed</a></td></tr>
+<tr><td>5</td><td><strong><a href="https://kdvr.com/news/local/company-halts-aurora-data-center-plan-after-community-opposition/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Vantage Trident site dropped (Aurora)</a></strong></td><td>Aurora, CO, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Vantage Data Centers</td><td><span class="status status-planned">Site dropped</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://kdvr.com/news/local/company-halts-aurora-data-center-plan-after-community-opposition/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Vantage drops Trident site near Green Valley Ranch after protests; still seeking another Aurora location</a></td></tr>
+<tr><td>6</td><td><strong><a href="https://www.wjbf.com/news/augusta-planning-commission-recommends-denial-of-proposed-data-center-rezoning/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Nixon Technology Campus (South Augusta)</a></strong></td><td>South Augusta, GA, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>~383 acres</td><td>3G Investments for The Nixon Trusts</td><td><span class="status status-planned">Denial recommended</span></td><td class="cost">~$3bn at build-out</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.wjbf.com/news/augusta-planning-commission-recommends-denial-of-proposed-data-center-rezoning/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Planning Commission votes 6-4 to recommend denying rezoning; Augusta Commission vote ~Dec 1</a></td></tr>
+<tr><td>7</td><td><strong><a href="https://cardinalnews.org/2026/11/23/judge-halts-google-data-center-construction-in-botetourt-county-orders-public-hearing/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Google Botetourt County DC -- construction halted</a></strong></td><td>Botetourt County, VA, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>~312 acres</td><td>Google</td><td><span class="status status-planned">Court-halted</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://cardinalnews.org/2026/11/23/judge-halts-google-data-center-construction-in-botetourt-county-orders-public-hearing/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Judge finds county broke Virginia FOIA, halts Google DC construction, rescinds approvals and orders public hearing</a></td></tr>
+<tr><td>8</td><td><strong><a href="https://www.datacenterdynamics.com/en/news/kkr-could-acquire-majority-stake-in-edgecore-for-up-to-10bn-report/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">EdgeCore majority stake (KKR talks)</a></strong></td><td>US (multi-market)</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>KKR (Helix) / Partners Group</td><td><span class="status status-announced">Reported talks</span></td><td class="cost">~$8-10bn valuation</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.datacenterdynamics.com/en/news/kkr-could-acquire-majority-stake-in-edgecore-for-up-to-10bn-report/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">KKR could take majority stake in EdgeCore at up to $10bn via Helix (report)</a></td></tr>
+<tr><td>9</td><td><strong><a href="https://www.datacenterdynamics.com/en/news/cogent-sells-three-data-centers-to-i-squared-capitals-saragon/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Cogent sells three DCs to Saragon</a></strong></td><td>Omaha NE, Tacoma WA, Cheyenne WY, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>3 sites</td><td>Cogent / Saragon (I Squared)</td><td><span class="status status-announced">Acquisition</span></td><td class="cost">$35M</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.datacenterdynamics.com/en/news/cogent-sells-three-data-centers-to-i-squared-capitals-saragon/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Definitive agreement to sell three DCs for $35M cash; close expected Q1 2027</a></td></tr>
+<tr><td>10</td><td><strong><a href="https://www.yahoo.com/news/articles/warrick-county-commissioners-vote-data-231650351.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Warrick County DC overlay ordinance</a></strong></td><td>Warrick County, IN, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Warrick County Commissioners</td><td><span class="status status-announced">Approved</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.yahoo.com/news/articles/warrick-county-commissioners-vote-data-231650351.html" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Floating DC overlay ordinance approved 2-0-1; moratorium stays to Feb 7</a></td></tr>
+<tr><td>11</td><td><strong><a href="https://wreg.com/news/commissioners-vote-to-regulate-data-center-energy-water-use" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Shelby County DC energy/water ordinance</a></strong></td><td>Shelby County, TN, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Shelby County Commission</td><td><span class="status status-announced">First reading passed</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://wreg.com/news/commissioners-vote-to-regulate-data-center-energy-water-use" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Ordinance regulating DC water and energy use passes first reading 9-4; two more readings needed</a></td></tr>
+<tr><td>12</td><td><strong><a href="https://www.centralillinoisproud.com/news/local-news/council-votes-data-center-pause/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Bloomington IL moratorium extension vote</a></strong></td><td>Bloomington, IL, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td class="mw">Covers &gt;5 MW</td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>City of Bloomington</td><td><span class="status status-planned">Vote scheduled</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.centralillinoisproud.com/news/local-news/council-votes-data-center-pause/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Council set to vote on extending moratorium on DCs over 5 MW to Nov 23, 2027 (outcome unconfirmed)</a></td></tr>
+<tr><td>13</td><td><strong><a href="https://okcfox.com/newsletter-daily/piedmont-delays-two-data-center-proposals-amid-utility-zoning-concerns-beltline-cloverleaf-project-open-sky-land-development-pud-rezoning-utilities-development" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Piedmont OK rezonings postponed</a></strong></td><td>Piedmont, OK, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Beltline: 321 acres</td><td>Cloverleaf; Beltline Energy</td><td><span class="status status-planned">Postponed</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://okcfox.com/newsletter-daily/piedmont-delays-two-data-center-proposals-amid-utility-zoning-concerns-beltline-cloverleaf-project-open-sky-land-development-pud-rezoning-utilities-development" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Council votes 3-2 twice to postpone Project Open Sky and Beltline rezonings to Dec 3 over utility concerns</a></td></tr>
+<tr><td>14</td><td><strong><a href="https://www.yahoo.com/news/articles/data-center-restrictions-detroit-drawdown-120211253.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Salem OR interim DC rules</a></strong></td><td>Salem, OR, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td class="mw">10 MW cap proposed</td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>City of Salem</td><td><span class="status status-planned">Public hearing</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.yahoo.com/news/articles/data-center-restrictions-detroit-drawdown-120211253.html" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Code changes would exclude hyperscale DCs, cap at 10 MW and require 1,000-ft setbacks</a></td></tr>
+<tr><td>15</td><td><strong><a href="https://www.riverbender.com/news/details.cfm?id=98590" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Riverbend Technology Center (Alton)</a></strong></td><td>Alton, IL, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td class="mw">200 MW initial; ~1 GW campus</td><td>~381 acres</td><td>TerraWatt</td><td><span class="status status-planned">Rezoning filed</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.riverbender.com/news/details.cfm?id=98590" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Public hearing scheduled on rezoning for DC at former Alton Steel site</a></td></tr>
+<tr><td>16</td><td><strong><a href="https://www.wral.com/news/local/selma-north-carolina-data-center-project-volt-november-2026/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Project Volt (Selma NC)</a></strong></td><td>Selma, NC, US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Not disclosed</td><td><span class="status status-planned">Planning review</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.wral.com/news/local/selma-north-carolina-data-center-project-volt-november-2026/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Planning board considers &#x27;Project Volt&#x27; DC; town council approval still needed</a></td></tr>
+<tr><td>17</td><td><strong><a href="https://www.theregister.com/ai-and-ml/2026/11/23/amazon-scoops-up-ai-accelerator-tech-to-keep-chips-busy-at-all-times/5311754" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Amazon acquires Decart DOS layer</a></strong></td><td>US</td><td><span style="display:inline-block;background:#1E40AF;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">N. America</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Amazon / AWS</td><td><span class="status status-announced">Acquisition</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.theregister.com/ai-and-ml/2026/11/23/amazon-scoops-up-ai-accelerator-tech-to-keep-chips-busy-at-all-times/5311754" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Amazon buys Decart&#x27;s DOS software that keeps AI accelerator cores busy, ahead of re:Invent</a></td></tr>
+<tr><td>18</td><td><strong><a href="https://bdaily.co.uk/articles/2026/11/23/drax-in-guidance-upgrade-as-energy-demand-soars" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Drax guidance upgrade (DC partnership)</a></strong></td><td>Drax, North Yorkshire, UK</td><td><span style="display:inline-block;background:#7C3AED;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">Europe</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Drax / Brookfield / Radiant</td><td><span class="status status-planned">Guidance raised</span></td><td class="cost">£20bn+ (planned DC programme)</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://bdaily.co.uk/articles/2026/11/23/drax-in-guidance-upgrade-as-energy-demand-soars" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Drax raises full-year guidance as energy demand rises, citing its planned DC partnership</a></td></tr>
+<tr><td>19</td><td><strong><a href="https://www.insidermedia.com/news/yorkshire/ai-data-centre-build-out-fuels-manufacturing-growth-spurt-survey-finds" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">UK factory output lifted by AI DC build-out</a></strong></td><td>UK</td><td><span style="display:inline-block;background:#7C3AED;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">Europe</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Industry survey (PA)</td><td><span class="status status-announced">Reported</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.insidermedia.com/news/yorkshire/ai-data-centre-build-out-fuels-manufacturing-growth-spurt-survey-finds" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Survey: AI DC build-out helped drive UK factory output to its biggest rise in over two years</a></td></tr>
+<tr><td>20</td><td><strong><a href="https://bebeez.eu/2026/11/23/northern-europe-energy-eyes-200mw-data-center-project-outside-riga-latvia/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">Salaspils DC campus (Latvia)</a></strong></td><td>Salaspils, Latvia</td><td><span style="display:inline-block;background:#7C3AED;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">Europe</span></td><td class="mw">200+ MW</td><td>~16 ha</td><td>Northern Europe Energy</td><td><span class="status status-planned">Early planning</span></td><td class="cost">Not Disclosed</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://bebeez.eu/2026/11/23/northern-europe-energy-eyes-200mw-data-center-project-outside-riga-latvia/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Exclusive rights to 16 ha secured for 200 MW+ campus on 110 kV then 330 kV lines</a></td></tr>
+<tr><td>21</td><td><strong><a href="https://www.elcorreogallego.es/economia/2026/11/23/centros-datos-tribunal-supremo-recurso-google-amazon-electricas-136754344.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">SpainDC Supreme Court challenge to DC decree</a></strong></td><td>Spain</td><td><span style="display:inline-block;background:#7C3AED;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">Europe</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>SpainDC</td><td><span class="status status-planned">Appeal in preparation</span></td><td class="cost">EUR66.9bn planned investment at risk (assoc.)</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.elcorreogallego.es/economia/2026/11/23/centros-datos-tribunal-supremo-recurso-google-amazon-electricas-136754344.html" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Operators ask Google, Amazon and utilities to join Supreme Court challenge to 80% hourly-renewables decree</a></td></tr>
+<tr><td>22</td><td><strong><a href="https://techcabal.com/2026/11/23/cloudvantage-launches-lagos-and-abuja-cloud-regions-offering-nigerian-businesses-secure-local-hosting-and-naira-pricing/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">CloudVantage Lagos &amp; Abuja cloud regions</a></strong></td><td>Lagos &amp; Abuja, Nigeria</td><td><span style="display:inline-block;background:#059669;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">Africa</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>CloudVantage (with Rack Centre)</td><td><span class="status status-active">Launched</span></td><td class="cost">N/A</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://techcabal.com/2026/11/23/cloudvantage-launches-lagos-and-abuja-cloud-regions-offering-nigerian-businesses-secure-local-hosting-and-naira-pricing/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Local cloud regions with naira pricing launched ahead of CBN data-localisation deadline</a></td></tr>
+<tr><td>23</td><td><strong><a href="https://w.media/ctrls-signs-mou-with-bihar-government-for-150-mw-ai-ready-data-center/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">CtrlS 150 MW Bihar AI factory (MoU)</a></strong></td><td>Near Patna, Bihar, India</td><td><span style="display:inline-block;background:#0D9488;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">APAC</span></td><td class="mw">150 MW</td><td>100 acres</td><td>CtrlS Datacenters</td><td><span class="status status-announced">MoU signed</span></td><td class="cost">Rs 10,000 crore (~$1bn)</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://w.media/ctrls-signs-mou-with-bihar-government-for-150-mw-ai-ready-data-center/" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">CtrlS signs MoU with Bihar for 150 MW AI-ready hyperscale DC; target online 2029/30</a></td></tr>
+<tr><td>24</td><td><strong><a href="https://www.larsentoubro.com/pressreleases/2026/2026-11-23-larsen-toubro-secures-large-order-for-deploying-ai-cluster" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">LTN Compute Chennai -- B300 deployment order</a></strong></td><td>Chennai, India</td><td><span style="display:inline-block;background:#0D9488;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">APAC</span></td><td class="mw">Phase 1 designed for 250 MW</td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Larsen &amp; Toubro (LTN Compute)</td><td><span class="status status-announced">Order secured</span></td><td class="cost">&#x27;Large&#x27; order (value undisclosed)</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://www.larsentoubro.com/pressreleases/2026/2026-11-23-larsen-toubro-secures-large-order-for-deploying-ai-cluster" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">Multi-year deal with unnamed inference provider for more NVIDIA B300 GPUs at Chennai AI cluster</a></td></tr>
+<tr><td>25</td><td><strong><a href="https://en.sedaily.com/world/2026/11/23/us-chip-export-rules-jolt-southeast-asias-data-center-boom" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--az-blue-accent);">SE Asia DCs -- US chip-rule fallout</a></strong></td><td>Indonesia, Malaysia, Singapore, Thailand</td><td><span style="display:inline-block;background:#0D9488;color:#fff;font-size:9px;padding:1px 7px;border-radius:8px;font-weight:600;white-space:nowrap;">APAC</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td><span style="color:#94a3b8;font-size:10px;">Not Disclosed</span></td><td>Multiple; Moonshot AI</td><td><span class="status status-planned">Contract cancelled</span></td><td class="cost">~$150M (Moonshot contract)</td><td style="font-weight:600;color:var(--az-navy);white-space:nowrap;">Nov 23, 2026</td><td style="font-size:11px;"><a href="https://en.sedaily.com/world/2026/11/23/us-chip-export-rules-jolt-southeast-asias-data-center-boom" target="_blank" rel="noopener" style="color:var(--az-blue-accent);text-decoration:none;">US licensing jolts SE Asia DC boom; Moonshot AI reportedly cancels ~$150M Indonesian DC contract</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="citations">
+<h2>&#128218; Source Index</h2>
+<details>
+<summary>View all sources referenced in this report (click to expand)</summary>
+<div class="cite-list">
+<p><span class="cite-num">1.</span> <a href="https://www.telecompaper.com/news/ooredoo-qatar-starts-work-on-new-data-centre-in-mesaimeer--1042556" target="_blank">Telecompaper, Houten, Netherlands, Ooredoo Qatar Starts Work on New Mesaimeer Data Centre</a></p><p><span class="cite-num">2.</span> <a href="https://www.datacenterdynamics.com/en/news/ooredoo-opens-new-data-center-floor-in-qatar/" target="_blank">DCD, London, UK, Ooredoo Opens New Data Center Floor in Qatar</a></p><p><span class="cite-num">3.</span> <a href="https://developingtelecoms.com/telecom-technology/data-centres-networks/19644-ooredoos-syntys-buys-q-data-to-expand-qatar-data-centre-portfolio.html" target="_blank">Developing Telecoms, London, UK, Ooredoo's Syntys Buys Q Data</a></p><p><span class="cite-num">4.</span> <a href="https://www.datacenterdynamics.com/en/news/qatars-meeza-signs-8mw-lease-with-global-hyperscaler/" target="_blank">DCD, London, UK, Qatar's MEEZA Signs 8MW Lease with Global Hyperscaler</a></p><p><span class="cite-num">5.</span> <a href="https://www.gulf-times.com/story/666224/meeza-launches-4th-data-centre-to-support-qatars-digital-transformation" target="_blank">Gulf Times, Doha, Qatar, MEEZA Launches 4th Data Centre (M-VAULT 4, QSTP)</a></p><p><span class="cite-num">6.</span> <a href="https://www.datacenterfrontier.com/hyperscale/article/55323360/blackrock-led-consortium-to-acquire-aligned-data-centers-in-40-billion-ai-infrastructure-deal" target="_blank">Data Center Frontier, USA, BlackRock-Led Consortium to Acquire Aligned Data Centers in $40B Deal</a></p><p><span class="cite-num">7.</span> <a href="https://www.global-infra.com/news/ai-infrastructure-partnership-aip-mgx-and-blackrocks-global-infrastructure-partners-gip-to-acquire-all-equity-in-aligned-data-centers/" target="_blank">Global Infrastructure Partners, New York, NY, AIP, MGX and GIP to Acquire All Equity in Aligned</a></p><p><span class="cite-num">8.</span> <a href="https://www.businesswire.com/news/home/20260720395324/en/AIP-MGX-and-BlackRocks-GIP-Close-Acquisition-of-Aligned-Data-Centers" target="_blank">Businesswire, San Francisco, CA, AIP, MGX and GIP Close Acquisition of Aligned Data Centers</a></p><p><span class="cite-num">9.</span> <a href="https://www.esgdive.com/news/blackrocks-gip-microsoft-backed-ai-group-buy-aligned-data-centers-for-40/825920/" target="_blank">ESG Dive, Washington, DC, BlackRock's GIP, Microsoft-Backed AI Group Buy Aligned for $40B</a></p><p><span class="cite-num">10.</span> <a href="https://americanbazaaronline.com/2026/09/11/house-bill-data-center-electricity-costs-487979/" target="_blank">American Bazaar, Washington, DC, House to Vote on Bill Targeting Data Center Power Costs</a></p><p><span class="cite-num">11.</span> <a href="https://www.energyconnects.com/news/utilities/2026/september/why-the-data-center-backlash-is-a-defining-midterms-issue" target="_blank">Energy Connects, Dubai, UAE, Why the Data Center Backlash Is a Defining Midterms Issue</a></p><p><span class="cite-num">12.</span> <a href="https://www.everycrsreport.com/reports/R49326.html" target="_blank">Congressional Research Service, Washington, DC, Data Centers and the Electricity Grid (R49326)</a></p><p><span class="cite-num">13.</span> <a href="https://savingtoinvest.com/why-is-your-electric-bill-going-up-in-2026-what-data-centers-have-to-do-with-it/" target="_blank">Saving to Invest, USA, US Utility Rate Increases H1 2026 and Data Centers</a></p><p><span class="cite-num">14.</span> <a href="https://www.multistate.us/insider/2026/2/20/state-data-center-legislation-in-2026-tackles-energy-and-tax-issues" target="_blank">MultiState, Alexandria, VA, State Data Center Legislation in 2026 Tackles Energy and Tax Issues</a></p><p><span class="cite-num">15.</span> <a href="https://www.yahoo.com/news/articles/governors-head-white-house-friday-235824099.html" target="_blank">Yahoo News / Reuters, Governors Head to White House to Unveil Deal to Curb Power Prices</a></p><p><span class="cite-num">16.</span> <a href="https://www.consumerreports.org/data-centers/ai-data-centers-impact-on-electric-bills-water-and-more-a1040338678/" target="_blank">Consumer Reports, Yonkers, NY, AI Data Centers: Impact on Electric Bills, Water and More</a></p><p><span class="cite-num">17.</span> <a href="https://warrington.ufl.edu/news/data-centers-construction/" target="_blank">UF Warrington College of Business, Gainesville, FL, Construction of Data Centers Booms, as Does Opposition</a></p><p><span class="cite-num">18.</span> <a href="https://www.connectingafrica.com/data-centers/vodafone-cassava-elsewedy-electric-unveil-1b-egypt-data-center-project" target="_blank">Connecting Africa, Vodafone, Cassava, Elsewedy Electric Unveil $1B Egypt Data Center Project</a></p><p><span class="cite-num">19.</span> <a href="https://www.cassavatechnologies.com/launch-of-egypt-first-national-ai-factory-in-partnership-with-vodafone-business/" target="_blank">Cassava Technologies, Launch of Egypt's First National AI Factory with Vodafone Business</a></p><p><span class="cite-num">20.</span> <a href="https://techafricanews.com/2026/09/08/egypt-vodafone-elsewedy-cassava-1bn-data-centre/" target="_blank">TechAfrica News, Egypt Partners With Vodafone, Elsewedy and Cassava on $1bn Data Centre</a></p><p><span class="cite-num">21.</span> <a href="https://techafricanews.com/2026/09/09/vodafone-business-cassava-technologies-launch-egypts-first-sovereign-ai-factory/" target="_blank">TechAfrica News, Vodafone Business and Cassava Launch Egypt's First Sovereign AI Factory</a></p><p><span class="cite-num">22.</span> <a href="https://www.developingtelecoms.com/telecom-technology/data-centres-networks/20794-vodafone-cassava-and-elsewedy-electric-form-africa-data-centers-egypt.html" target="_blank">Developing Telecoms, London, UK, Vodafone, Cassava and Elsewedy Form Africa Data Centers Egypt</a></p><p><span class="cite-num">23.</span> <a href="https://news.broadcastmediaafrica.com/2026/09/14/digital-parks-africa-expands-into-west-africa-with-new-nigeria-data-centre/" target="_blank">Broadcast Media Africa, Digital Parks Africa Expands Into West Africa With Nigeria Data Centre</a></p><p><span class="cite-num">24.</span> <a href="https://www.datacloudafrica.com/" target="_blank">Datacloud Africa 2026, Nairobi, Kenya, Africa's Data Centre &amp; Cloud Summit</a></p><p><span class="cite-num">25.</span> <a href="https://www.zawya.com/en/economy/africa/africa-data-centre-market-2026-structural-growth-energy-constraints-and-long-term-investment-strategy-rgzpkiik" target="_blank">Zawya, Dubai, UAE, Africa Data Centre Market 2026: Structural Growth and Energy Constraints</a></p><p><span class="cite-num">26.</span> <a href="https://capacityglobal.com/news/what-is-driving-kenyas-data-centre-boom/" target="_blank">Capacity Media, London, UK, What Is Driving Kenya's Data Centre Boom?</a></p><p><span class="cite-num">27.</span> <a href="https://www.prnewswire.com/news-releases/africa-data-center-market-investment-to-reach-usd-8-76-billion-by-2031--as-south-africa-kenya-nigeria-and-egypt-emerge-as-strategic-hubs--arizton-302809272.html" target="_blank">Arizton / PRNewswire, Chicago, IL, Africa DC Investment to Reach $8.76B by 2031</a></p><p><span class="cite-num">28.</span> <a href="https://businessday.ng/technology/article/investors-pour-into-africas-digital-backbone-as-data-centre-projects-near-900-mw/" target="_blank">BusinessDay NG, Lagos, Nigeria, Investors Pour Into Africa's Digital Backbone as Projects Near 900 MW</a></p><p><span class="cite-num">29.</span> <a href="https://introl.com/blog/africa-ai-data-center-boom-opportunities-nigeria-kenya-south-africa" target="_blank">Introl, Africa's AI Data Center Boom: Nigeria, Kenya, South Africa</a></p><p><span class="cite-num">30.</span> <a href="https://www.ecofinagency.com/news/0309-48382-africa-s-big-four-host-46-of-the-continent-s-data-centers-study" target="_blank">Ecofin Agency, Africa's Big Four Host 46% of the Continent's Data Centers</a></p><p><span class="cite-num">31.</span> <a href="https://energychamber.org/data-centers-could-be-the-spark-africas-power-sector-needs/" target="_blank">African Energy Chamber, Data Centers Could Be the Spark Africa's Power Sector Needs</a></p><p><span class="cite-num">32.</span> <a href="https://www.datacenterdynamics.com/en/news/khazna-announces-1gw-data-center-expansion-plans/" target="_blank">DCD, London, UK, Khazna Announces 1GW Data Center Expansion Plans</a></p><p><span class="cite-num">33.</span> <a href="https://www.agbi.com/ai/2026/09/saudi-company-launches-fund-to-build-two-data-centres/" target="_blank">AGBI, Dubai, UAE, Saudi Company Launches Fund to Build Two Data Centres (HUMAIN + DataVolt NEOM)</a></p><p><span class="cite-num">34.</span> <a href="https://www.meed.com/gccs-top-five-data-centre-projects" target="_blank">MEED, Dubai, UAE, GCC's Top Five Data Centre Projects</a></p><p><span class="cite-num">35.</span> <a href="https://www.globaldata.com/store/report/gcc-data-centre-projects-market-analysis/" target="_blank">GlobalData / MEED Insight, London, UK, The GCC Data Centre Projects Market 2026</a></p><p><span class="cite-num">36.</span> <a href="https://www.analysysmason.com/about-us/news/predictions-2026/prediction-ai-investment-gcc/" target="_blank">Analysys Mason, London, UK, GCC AI Data Centre Investment to Reach $5-7B in 2026</a></p><p><span class="cite-num">37.</span> <a href="https://makitsol.com/ai-infrastructure-gcc-saudi-uae-qatar-guide/" target="_blank">Mak IT Solutions, AI Infrastructure GCC: Saudi, UAE &amp; Qatar Guide</a></p><p><span class="cite-num">38.</span> <a href="https://www.globenewswire.com/news-release/2026/09/14/3360862/28124/en/united-kingdom-data-center-portfolio-poised-for-expansion-as-cloud-ai-and-hyperscale-demand-drive-new-development-opportunities.html" target="_blank">GlobeNewswire, UK Data Center Portfolio Poised for Expansion (Sept 14, 2026)</a></p><p><span class="cite-num">39.</span> <a href="https://www.burges-salmon.com/articles/102lxwu/data-centres-ai-growth-zones-in-planning-change-on-the-horizon-in-2026/" target="_blank">Burges Salmon, Bristol, UK, Data Centres &amp; AI Growth Zones in Planning: Change on the Horizon 2026</a></p><p><span class="cite-num">40.</span> <a href="https://www.bakermckenzie.com/en/insight/publications/2026/01/uk-government-policy-paper-delivering-ai-growth-zones" target="_blank">Baker McKenzie, London, UK, UK Government Policy Paper: Delivering AI Growth Zones</a></p><p><span class="cite-num">41.</span> <a href="https://energy.drax.com/intelligence/data-centres-ai-government-support/" target="_blank">Drax, Selby, UK, Data Centres to Receive Support From AI Growth Zones</a></p><p><span class="cite-num">42.</span> <a href="https://www.constructionmagazine.uk/2026/08/uk-data-centre-construction-2026-government-rejects-freeze.html" target="_blank">Construction Magazine UK, Government Rejects Freeze as Planning Rules Back AI Growth</a></p><p><span class="cite-num">43.</span> <a href="https://aienergyintelligence.co.uk/reports/ai-data-centres-and-the-uk-electricity-grid-2026" target="_blank">AI Energy Intelligence UK, AI Data Centres and the UK Electricity Grid 2026</a></p><p><span class="cite-num">44.</span> <a href="https://thenextweb.com/news/nscale-essex-data-centre-uk-grid-delay" target="_blank">The Next Web, Amsterdam, Netherlands, Nscale's £2bn AI Data Centre Hit by UK Grid Delays</a></p><p><span class="cite-num">45.</span> <a href="https://www.globenewswire.com/news-release/2025/10/15/3166823/0/en/Nscale-Contracts-Approximately-200-000-NVIDIA-GB300-GPUs-with-Microsoft-to-Deliver-NVIDIA-AI-Infrastructure-Across-Europe-and-the-U-S.html" target="_blank">GlobeNewswire, Nscale Contracts ~200,000 NVIDIA GB300 GPUs With Microsoft</a></p><p><span class="cite-num">46.</span> <a href="https://www.cushmanwakefield.com/en/singapore/insights/apac-data-centre-update" target="_blank">Cushman &amp; Wakefield, Singapore, APAC Data Centre Update H1 2026</a></p><p><span class="cite-num">47.</span> <a href="https://arc-group.com/southeast-asia-data-centre-ma-2026/" target="_blank">ARC Group, Southeast Asia Data Centre M&amp;A in 2026</a></p><p><span class="cite-num">48.</span> <a href="https://www.mckinsey.com/featured-insights/future-of-asia/countries-and-regions/southeast-asia/southeast-asia-perspectives/beyond-the-spillover-asia-pacific-the-next-engine-of-data-center-demand" target="_blank">McKinsey &amp; Company, Beyond the Spillover: Asia-Pacific, the Next Engine of Data Center Demand</a></p><p><span class="cite-num">49.</span> <a href="https://www.cbre.com/insights/articles/asia-pacific-data-centre-boom-to-continue-in-2026" target="_blank">CBRE, Asia Pacific Data Centre Boom to Continue in 2026</a></p><p><span class="cite-num">50.</span> <a href="https://www.eudca.org/new-2026-state-of-european-data-centres" target="_blank">EUDCA, Brussels, Belgium, New 2026 State of European Data Centres</a></p><p><span class="cite-num">51.</span> <a href="https://www.pwc.com/gx/en/news-room/press-releases/2026/global-investment-in-ai-infrastructure.html" target="_blank">PwC, London, UK, Global Investment in AI Infrastructure to Hit US$31.6 Trillion Through 2050</a></p><p><span class="cite-num">52.</span> <a href="https://nvidianews.nvidia.com/news/rubin-platform-ai-supercomputer" target="_blank">NVIDIA Newsroom, Santa Clara, CA, NVIDIA Kicks Off the Next Generation of AI With Rubin</a></p><p><span class="cite-num">53.</span> <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/qualcomm-unveils-ai200-and-ai250-ai-inference-accelerators-hexagon-takes-on-amd-and-nvidia-in-the-booming-data-center-realm" target="_blank">Tom's Hardware, Qualcomm Unveils AI200 and AI250 AI Inference Accelerators</a></p><p><span class="cite-num">54.</span> <a href="https://www.datacenterdynamics.com/en/news/qualcomm-launches-ai200-and-ai250-chip-offering-targeting-inferencing-workloads-at-rack-scale/" target="_blank">DCD, London, UK, Qualcomm Launches AI200 and AI250 Targeting Rack-Scale Inference</a></p><p><span class="cite-num">55.</span> <a href="https://www.boschrexroth.com/en/gb/connected-hydraulics/products/sytronix/" target="_blank">Bosch Rexroth, Lohr am Main, Germany, Sytronix Variable-Speed Pump Drives (GB)</a></p><p><span class="cite-num">56.</span> <a href="https://www.amd.com/en/blogs/2026/amd-launches-helios-the-highest-performing-rackscale-ai-infrastructure-solution.html" target="_blank">AMD, Santa Clara, CA, AMD Launches Helios: Highest-Performing Rackscale AI Infrastructure</a></p><p><span class="cite-num">57.</span> <a href="https://www.brockovichdatacenter.com/" target="_blank">Brockovich Data Center Reporting, US AI Data Center Awareness &amp; Issue Map (refreshed Sept 10, 2026)</a></p><p><span class="cite-num">58.</span> <a href="https://aidatacenterindex.com/" target="_blank">AI Data Center Index, Global AI Data Centre Tracker (346 facilities / 154.6 GW)</a></p><p><span class="cite-num">59.</span> <a href="https://baxtel.com/events" target="_blank">Baxtel, Data Center Events Calendar 2026</a></p><p><span class="cite-num">60.</span> <a href="https://dcwpower.com/" target="_blank">Data Center World Power, Sept 21-23, 2026, Gaylord Texan Resort, Dallas, TX</a></p><p><span class="cite-num">61.</span> <a href="https://datacentremagazine.com/events/data-centre-world-asia-2026" target="_blank">Data Centre Magazine, Data Centre World Asia 2026, Marina Bay Sands, Singapore</a></p><p><span class="cite-num">62.</span> <a href="https://datacentrenews.substack.com/p/weekly-data-centre-news-28082026" target="_blank">Weekly Data Centre News, 28 August 2026 Edition</a></p><p><span class="cite-num">63.</span> <a href="https://dataxconnect.com/weekly-data-centre-news-4th-september-2026/" target="_blank">DataX Connect, Weekly Data Centre News, 4 September 2026</a></p><p><span class="cite-num">64.</span> <a href="https://www.datacenterknowledge.com/data-center-construction/new-data-center-developments-august-2026" target="_blank">DCK, Washington, DC, New Data Center Developments: August 2026</a></p>
+</div>
+</details>
+</div>
+
+<!-- FOOTER -->
+<div class="footer" style="border-radius:10px; margin-top:40px;">
+  <p><strong>azraq.ai</strong>, AI-Powered Risk Management for Digital Infrastructure</p>
+  <p style="margin-top:4px;">Report compiled by Daveson Juanico, Project Manager | Week 48, November 23 - 29, 2026 (to date: Nov 23-24)</p>
+  <p style="margin-top:4px; font-size:11px;">All project names and news headlines are hyperlinked to their original source articles for full traceability.<br>Data sourced from DCK, DCD, CBRE, JLL, Cushman &amp; Wakefield, PwC, Arizton, MEED, STRisker, CNBC, Reuters &amp; verified industry reporting.</p>
+</div>
+
+</div>
+
+<script>
+document.getElementById('searchBox').addEventListener('input', function(e) {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('tbody tr').forEach(function(row) {
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+});
+
+function filterRegion(region, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  var rm = {'north-america':'N. America','europe':'Europe','asia-pacific':'APAC','middle-east':'Middle East','africa':'Africa','latam':'LATAM','oceania':'Oceania'};
+  var label = rm[region] || '';
+  document.querySelectorAll('tbody tr').forEach(function(row) {
+    if (region === 'all') { row.style.display = ''; return; }
+    var found = false;
+    row.querySelectorAll('span').forEach(function(s) { if (s.textContent.trim() === label) found = true; });
+    row.style.display = found ? '' : 'none';
+  });
+}
+</script>
